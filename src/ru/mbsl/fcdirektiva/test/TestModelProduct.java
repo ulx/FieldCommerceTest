@@ -3,7 +3,7 @@ package ru.mbsl.fcdirektiva.test;
 import java.util.List;
 
 import ru.mbsl.fcdirektiva.database.DataBaseManager;
-import ru.mbsl.itemTable.ProductItem;
+import ru.mbsl.fcdirektiva.itemTable.ProductItem;
 import ru.mbsl.models.FactoryModel;
 import ru.mbsl.models.IModel;
 import android.test.AndroidTestCase;
@@ -47,6 +47,8 @@ public class TestModelProduct extends AndroidTestCase {
 	 */
 	@MediumTest
 	public void testDeleteItem(){
+		model.clearDataBase();
+		item.id_product = 1;
 		item._id = model.save(item);
 		int index = model.removeItem(item._id);
 		assertEquals(1, index);
@@ -58,9 +60,13 @@ public class TestModelProduct extends AndroidTestCase {
 	@MediumTest
 	public void testGetItemsAll(){
 		model.clearDataBase();
+		item.id_product = 1;
 		model.save(item);
+		item.id_product = 2;
 		model.save(item);
+		item.id_product = 3;
 		model.save(item);
+		item.id_product = 4;
 		model.save(item);
 		List<?> list = model.getItemsAll();
 		assertTrue(list.size() == 4);
@@ -71,11 +77,13 @@ public class TestModelProduct extends AndroidTestCase {
 	 */
 	@MediumTest
 	public void testGetItem(){
+		model.clearDataBase();
 		ProductItem item = new ProductItem();
+		item.id_product = 1;
 		item.name = "test";
 		item.manufacturer = "test";
-		item._id = model.save(item);
-		ProductItem temp = (ProductItem)model.getItem(item._id);
+		model.save(item);
+		ProductItem temp = (ProductItem)model.getItemDB(item.id_product);
 		assertTrue(item.equals(temp));
 	}
 	
@@ -84,14 +92,16 @@ public class TestModelProduct extends AndroidTestCase {
 	 */
 	@MediumTest
 	public void testUpdateItem(){
+		model.clearDataBase();
 		ProductItem item = new ProductItem();
+		item.id_product = 1;
 		item.name = "test";
 		item.manufacturer = "test";
-		item._id = model.save(item);
+		model.save(item);
 		item.name = "test2";
 		item.manufacturer = "test2";
 		model.save(item);
-		ProductItem temp = (ProductItem)model.getItem(item._id);
+		ProductItem temp = (ProductItem)model.getItemDB(item.id_product);
 		assertTrue(item.equals(temp));
 	}
 }

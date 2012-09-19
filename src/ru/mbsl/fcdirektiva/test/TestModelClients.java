@@ -3,7 +3,7 @@ package ru.mbsl.fcdirektiva.test;
 import java.util.List;
 
 import ru.mbsl.fcdirektiva.database.DataBaseManager;
-import ru.mbsl.itemTable.ClientItem;
+import ru.mbsl.fcdirektiva.itemTable.ClientItem;
 import ru.mbsl.models.FactoryModel;
 import ru.mbsl.models.IModel;
 import android.test.AndroidTestCase;
@@ -25,7 +25,9 @@ public class TestModelClients extends AndroidTestCase  {
 	 */
 	@MediumTest
 	public void testSaveInsert(){			
+		model.clearDataBase();
 		ClientItem item = new ClientItem();
+		item.id_client = 1;
 		long index = model.save(item);		
 		assertTrue(index > 0);
 	}
@@ -35,7 +37,9 @@ public class TestModelClients extends AndroidTestCase  {
 	 */
 	@MediumTest
 	public void testClearTable(){
+		model.clearDataBase();
 		ClientItem item = new ClientItem();
+		item.id_client = 1;
 		model.save(item);		
 		model.clearDataBase();
 		List<?> list = model.getItemsAll();
@@ -47,9 +51,11 @@ public class TestModelClients extends AndroidTestCase  {
 	 */
 	@MediumTest
 	public void testDeleteItem(){
+		model.clearDataBase();
 		ClientItem item = new ClientItem();		
-		item._id = model.save(item);
-		int index = model.removeItem(item._id);
+		item.id_client = 1;
+		model.save(item);
+		int index = model.removeItem(item.id_client);
 		assertEquals(1, index);
 	}
 	
@@ -60,9 +66,13 @@ public class TestModelClients extends AndroidTestCase  {
 	public void testGetItemsAll(){
 		model.clearDataBase();
 		ClientItem item = new ClientItem();
+		item.id_client = 1;
 		model.save(item);
+		item.id_client = 2;
 		model.save(item);
+		item.id_client = 3;
 		model.save(item);
+		item.id_client = 4;
 		model.save(item);
 		List<?> list = model.getItemsAll();
 		assertTrue(list.size() == 4);
@@ -73,13 +83,15 @@ public class TestModelClients extends AndroidTestCase  {
 	 */
 	@MediumTest
 	public void testGetItem(){
+		model.clearDataBase();
 		ClientItem item = new ClientItem();
+		item.id_client = 1;
 		item.address = "test";
 		item.group_id = 1;
 		item.name = "test";
 		item.status = 1;
-		item._id = model.save(item);
-		ClientItem temp = (ClientItem)model.getItem(item._id);
+		model.save(item);
+		ClientItem temp = (ClientItem)model.getItemDB(item.id_client);
 		assertTrue(item.equals(temp));
 	}
 	
@@ -88,18 +100,20 @@ public class TestModelClients extends AndroidTestCase  {
 	 */
 	@MediumTest
 	public void testUpdateItem(){
+		model.clearDataBase();
 		ClientItem item = new ClientItem();
+		item.id_client = 1;
 		item.address = "test";
 		item.group_id = 1;
 		item.name = "test";
 		item.status = 1;
-		item._id = model.save(item);
+		model.save(item);
 		item.address = "test2";
 		item.group_id = 12;
 		item.name = "test2";
 		item.status = 12;
 		model.save(item);
-		ClientItem temp = (ClientItem)model.getItem(item._id);
+		ClientItem temp = (ClientItem)model.getItemDB(item.id_client);
 		assertTrue(item.equals(temp));
 	}
 	

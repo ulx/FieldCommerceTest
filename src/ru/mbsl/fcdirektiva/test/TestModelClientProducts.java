@@ -3,7 +3,7 @@ package ru.mbsl.fcdirektiva.test;
 import java.util.List;
 
 import ru.mbsl.fcdirektiva.database.DataBaseManager;
-import ru.mbsl.itemTable.ClientProductItem;
+import ru.mbsl.fcdirektiva.itemTable.ClientProductItem;
 import ru.mbsl.models.FactoryModel;
 import ru.mbsl.models.IModel;
 import android.test.AndroidTestCase;
@@ -75,7 +75,7 @@ public class TestModelClientProducts extends AndroidTestCase {
 		item.id_client = 1;
 		item.id_product = 1;
 		item._id = model.save(item);
-		ClientProductItem temp = (ClientProductItem)model.getItem(item._id);
+		ClientProductItem temp = (ClientProductItem)model.getItemDB(item._id);
 		assertTrue(item.equals(temp));
 	}
 	
@@ -91,7 +91,7 @@ public class TestModelClientProducts extends AndroidTestCase {
 		item.id_client = 12;
 		item.id_product = 12;
 		model.save(item);
-		ClientProductItem temp = (ClientProductItem)model.getItem(item._id);
+		ClientProductItem temp = (ClientProductItem)model.getItemDB(item._id);
 		assertTrue(item.equals(temp));
 	}
 }

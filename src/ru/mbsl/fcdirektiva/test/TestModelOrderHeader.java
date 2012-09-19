@@ -3,7 +3,7 @@ package ru.mbsl.fcdirektiva.test;
 import java.util.List;
 
 import ru.mbsl.fcdirektiva.database.DataBaseManager;
-import ru.mbsl.itemTable.OrderHeaderItem;
+import ru.mbsl.fcdirektiva.itemTable.OrderHeaderItem;
 import ru.mbsl.models.FactoryModel;
 import ru.mbsl.models.IModel;
 import android.test.AndroidTestCase;
@@ -78,7 +78,7 @@ public class TestModelOrderHeader extends AndroidTestCase {
 	item.longitude = 123.123;
 	item.start_date = 100;
 		item._id = model.save(item);
-		OrderHeaderItem temp = (OrderHeaderItem)model.getItem(item._id);
+		OrderHeaderItem temp = (OrderHeaderItem)model.getItemDB(item._id);
 		assertTrue(item.equals(temp));
 	}
 	
@@ -100,7 +100,7 @@ public class TestModelOrderHeader extends AndroidTestCase {
 		item.longitude = 1232.1232;
 		item.start_date = 200;
 		model.save(item);
-		OrderHeaderItem temp = (OrderHeaderItem)model.getItem(item._id);
+		OrderHeaderItem temp = (OrderHeaderItem)model.getItemDB(item._id);
 		assertTrue(item.equals(temp));
 	}
 }
