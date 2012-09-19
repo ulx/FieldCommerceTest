@@ -4,8 +4,8 @@ import java.util.List;
 
 import ru.mbsl.fcdirektiva.database.DataBaseManager;
 import ru.mbsl.fcdirektiva.itemTable.OrderHeaderItem;
-import ru.mbsl.models.FactoryModel;
-import ru.mbsl.models.IModel;
+import ru.mbsl.fcdirektiva.models.FactoryModel;
+import ru.mbsl.fcdirektiva.models.IModel;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 
@@ -102,5 +102,23 @@ public class TestModelOrderHeader extends AndroidTestCase {
 		model.save(item);
 		OrderHeaderItem temp = (OrderHeaderItem)model.getItemDB(item._id);
 		assertTrue(item.equals(temp));
+	}
+	
+	/**
+	 * Получение элемента по идентификатору клиента
+	 */
+	@MediumTest
+	public void testGetOrderHeaderItemClientId(){
+		model.clearDataBase();
+		OrderHeaderItem item = new OrderHeaderItem();
+		item.finish_date = 100;
+		item.id_client = 1;
+		item.latitude = 123.123;
+		item.longitude = 123.123;
+		item.start_date = 100;
+		item._id = model.save(item);
+		OrderHeaderItem temp = (OrderHeaderItem)model.getItemDB(item._id);
+		assertTrue(item.equals(temp));
+		
 	}
 }

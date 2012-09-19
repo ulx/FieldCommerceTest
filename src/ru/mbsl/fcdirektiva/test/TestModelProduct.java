@@ -4,8 +4,8 @@ import java.util.List;
 
 import ru.mbsl.fcdirektiva.database.DataBaseManager;
 import ru.mbsl.fcdirektiva.itemTable.ProductItem;
-import ru.mbsl.models.FactoryModel;
-import ru.mbsl.models.IModel;
+import ru.mbsl.fcdirektiva.models.FactoryModel;
+import ru.mbsl.fcdirektiva.models.IModel;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 

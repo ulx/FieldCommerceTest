@@ -4,8 +4,8 @@ import java.util.List;
 
 import ru.mbsl.fcdirektiva.database.DataBaseManager;
 import ru.mbsl.fcdirektiva.itemTable.OrderDetailItem;
-import ru.mbsl.models.FactoryModel;
-import ru.mbsl.models.IModel;
+import ru.mbsl.fcdirektiva.models.FactoryModel;
+import ru.mbsl.fcdirektiva.models.IModel;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 
@@ -74,7 +74,6 @@ public class TestModelOrderDetail extends AndroidTestCase {
 		OrderDetailItem item = new OrderDetailItem();
 		item.cost = 123.123;
 		item.face = 1;
-		item.id_client = 1;
 		item.id_orderheader = 1;
 		item.id_product = 1;
 		item.photo_path = "path";
@@ -94,7 +93,6 @@ public class TestModelOrderDetail extends AndroidTestCase {
 		OrderDetailItem item = new OrderDetailItem();
 		item.cost = 123.123;
 		item.face = 1;
-		item.id_client = 1;
 		item.id_orderheader = 1;
 		item.id_product = 1;
 		item.photo_path = "path";
@@ -104,7 +102,6 @@ public class TestModelOrderDetail extends AndroidTestCase {
 		item._id = model.save(item);
 		item.cost = 123.1232;
 		item.face = 12;
-		item.id_client = 12;
 		item.id_orderheader = 12;
 		item.id_product = 12;
 		item.photo_path = "path2";
@@ -115,4 +112,6 @@ public class TestModelOrderDetail extends AndroidTestCase {
 		OrderDetailItem temp = (OrderDetailItem)model.getItemDB(item._id);
 		assertTrue(item.equals(temp));
 	}
+	
+	
 }
