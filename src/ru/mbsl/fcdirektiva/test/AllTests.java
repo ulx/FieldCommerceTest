@@ -6,6 +6,10 @@ import android.test.suitebuilder.TestSuiteBuilder;
 
 public class AllTests extends TestSuite {  
 	 public static Test suite() {  
-	  return new TestSuiteBuilder(AllTests.class).includeAllPackagesUnderHere().build();  
+		 TestSuiteBuilder testSuiteBuilder = new TestSuiteBuilder(AllTests.class);
+		 testSuiteBuilder.includePackages("ru.mbsl.fcdirektiva.importData");
+		// testSuiteBuilder.includePackages("ru.mbsl.fcdirektiva.test");
+		 return testSuiteBuilder.build();
+	//  return new TestSuiteBuilder(AllTests.class).includeAllPackagesUnderHere().build();  
 	 }  
 	}  
