@@ -6,6 +6,7 @@ import ru.mbsl.fcdirektiva.database.DataBaseManager;
 import ru.mbsl.fcdirektiva.itemTable.OrderDetailItem;
 import ru.mbsl.fcdirektiva.models.FactoryModel;
 import ru.mbsl.fcdirektiva.models.IModel;
+import ru.mbsl.fcdirektiva.models.OrderDetailModel;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 
@@ -85,6 +86,28 @@ public class TestModelOrderDetail extends AndroidTestCase {
 		assertTrue(item.equals(temp));
 	}
 	
+	
+	/**
+	 * Склевание наименований с отчетом
+	 */
+	@MediumTest
+	public void testGetItemsOrderHeader(){
+		OrderDetailItem item = new OrderDetailItem();
+		item.cost = 123.123;
+		item.face = 1;
+		item.id_orderheader = 1;
+		item.id_product = 1;
+		item.photo_path = "path";
+		item.product_name = "name";
+		item.rest = 1;
+		item.shelf = 1;
+		item._id = model.save(item);
+		List<OrderDetailItem> temp = ((OrderDetailModel)model).getItemsOrderHeader(item.id_orderheader);
+		assertTrue(temp.size() == 1);
+	}
+	
+	
+	
 	/**
 	 * Проверка обновления элемента в базе
 	 */
@@ -113,5 +136,41 @@ public class TestModelOrderDetail extends AndroidTestCase {
 		assertTrue(item.equals(temp));
 	}
 	
-	
+	/**
+	 * Проверка получения списка по идентификатору заголовку отчета
+	 */
+	@MediumTest
+	public void testGetOrderDetailItemsOrderHeadeId(){
+		model.clearDataBase();
+		OrderDetailItem item = new OrderDetailItem();
+		item.cost = 123.123;
+		item.face = 1;
+		item.id_orderheader = 1;
+		item.id_product = 1;
+		item.photo_path = "path";
+		item.product_name = "name";
+		item.rest = 1;
+		item.shelf = 1;
+		item._id = model.save(item);
+		item.cost = 123.123;
+		item.face = 1;
+		item.id_orderheader = 1;
+		item.id_product = 1;
+		item.photo_path = "path";
+		item.product_name = "name";
+		item.rest = 1;
+		item.shelf = 1;
+		item._id = model.save(item);
+		item.cost = 123.123;
+		item.face = 1;
+		item.id_orderheader = 2;
+		item.id_product = 1;
+		item.photo_path = "path";
+		item.product_name = "name";
+		item.rest = 1;
+		item.shelf = 1;
+		item._id = model.save(item);
+		List<?> list = ((OrderDetailModel)model).getItemsOrderHeader((long)1);
+		assertTrue(list.size() == 0);
+	}
 }

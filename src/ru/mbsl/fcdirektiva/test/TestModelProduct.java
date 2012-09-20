@@ -46,11 +46,11 @@ public class TestModelProduct extends AndroidTestCase {
 	 * Удаление элемента
 	 */
 	@MediumTest
-	public void testDeleteItem(){
+	public void testDeleteItem(){		
 		model.clearDataBase();
 		item.id_product = 1;
-		item._id = model.save(item);
-		int index = model.removeItem(item._id);
+		model.save(item);
+		int index = model.removeItem(item.id_product);
 		assertEquals(1, index);
 	}
 	
