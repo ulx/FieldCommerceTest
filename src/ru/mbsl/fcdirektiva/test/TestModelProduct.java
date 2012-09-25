@@ -26,7 +26,9 @@ public class TestModelProduct extends AndroidTestCase {
 	 * Сохраннение элемента в таблицу
 	 */
 	@MediumTest
-	public void testSaveInsert(){				
+	public void testSaveInsert(){		
+		model.clearDataBase();
+		item.id_product = 1;
 		long index = model.save(item);		
 		assertTrue(index > 0);
 	}
